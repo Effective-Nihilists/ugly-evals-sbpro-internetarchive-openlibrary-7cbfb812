@@ -58,7 +58,7 @@
     "stylelint": "13.12.0",
     "stylelint-declaration-use-variable": "1.7.2",
     "svgo": "2.2.2",
-    "vue": "2.6.12",
+    "vue": "3.5.33",
     "vue-async-computed": "3.9.0",
     "vue-multiselect": "2.1.6",
     "vue-template-compiler": "2.6.12",
