@@ -6,6 +6,12 @@ from infogami import config
 from openlibrary import accounts
 from . import cache
 
+
+def _sort_values(order_list, values_list):
+    """Return value names ordered by order_list, skipping unknown IDs."""
+    id_to_name = {v['id']: v['name'] for v in values_list}
+    return [id_to_name[id] for id in order_list if id in id_to_name]
+
 # URL for TheBestBookOn
 TBBO_URL = config.get('tbbo_url')
 
