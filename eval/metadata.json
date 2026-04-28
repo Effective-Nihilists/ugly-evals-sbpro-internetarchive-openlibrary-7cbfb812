@@ -1,0 +1,11 @@
+{
+  "instance_id": "instance_internetarchive__openlibrary-7cbfb812ef0e1f9716e2d6e85d538a96fcb79d13-vfa6ff903cb27f336e17654595dd900fa943dcd91",
+  "repo": "internetarchive/openlibrary",
+  "base_commit": "20e8fee0e879ca47c0a1259fec0a5ab1e292aa1f",
+  "dockerhub_tag": "internetarchive.openlibrary-internetarchive__openlibrary-7cbfb812ef0e1f9716e2d6e85d538a96fcb79d13-vfa6ff903cb27f336e17654595dd90",
+  "selected_test_files_to_run": "[\"openlibrary/tests/core/test_observations.py\"]",
+  "fail_to_pass": "['openlibrary/tests/core/test_observations.py::test_sort_values']",
+  "pass_to_pass": "[]",
+  "repo_language": "python",
+  "test_patch": "diff --git a/openlibrary/tests/core/test_observations.py b/openlibrary/tests/core/test_observations.py\nnew file mode 100644\nindex 00000000000..e0095d5d198\n--- /dev/null\n+++ b/openlibrary/tests/core/test_observations.py\n@@ -0,0 +1,21 @@\n+from openlibrary.core.observations import _sort_values\n+\n+def test_sort_values():\n+    orders_list = [3, 4, 2, 1]\n+    values_list = [\n+      {'id': 1, 'name': 'order'},\n+      {'id': 2, 'name': 'in'},\n+      {'id': 3, 'name': 'this'},\n+      {'id': 4, 'name': 'is'}\n+    ]\n+\n+    # sorted values returned given unsorted list\n+    assert _sort_values(orders_list, values_list) == ['this', 'is', 'in', 'order']\n+\n+    # no errors thrown when orders list contains an ID not found in the values list\n+    orders_list.insert(0, 5)\n+    assert _sort_values(orders_list, values_list) == ['this', 'is', 'in', 'order']\n+\n+    # value with ID that is not in orders list will not be included in sorted list\n+    values_list.append({'id': 100, 'name': 'impossible!'})\n+    assert _sort_values(orders_list, values_list) == ['this', 'is', 'in', 'order']\n"
+}
