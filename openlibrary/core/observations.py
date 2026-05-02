@@ -24,3 +24,15 @@ def get_aspects():
     response = requests.get(TBBO_URL + '/api/aspects')
 
     return response.text
+
+
+def _sort_values(order_list, values_list):
+    """
+    Return value names ordered according to order_list.
+
+    - Returns names in the exact order specified by order_list.
+    - Ignores IDs in order_list not found in values_list (no errors).
+    - Excludes values whose IDs are not in order_list.
+    """
+    value_map = {v['id']: v['name'] for v in values_list}
+    return [value_map[oid] for oid in order_list if oid in value_map]
