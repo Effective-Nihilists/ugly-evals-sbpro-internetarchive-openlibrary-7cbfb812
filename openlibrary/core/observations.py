@@ -9,6 +9,11 @@ from . import cache
 # URL for TheBestBookOn
 TBBO_URL = config.get('tbbo_url')
 
+def _sort_values(order_list, values_list):
+    id_to_name = {v['id']: v['name'] for v in values_list}
+    return [id_to_name[id] for id in order_list if id in id_to_name]
+
+
 def post_observation(data, s3_keys):
     headers = {
         'x-s3-access': s3_keys['access'],
